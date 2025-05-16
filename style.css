@@ -69,3 +69,25 @@ body {
   grid-row: span 4;
   gap: 15px;
 }
+
+.clear {
+  background: linear-gradient(45deg, #e94057, #8a2387);
+  color: white;
+  font-weight: bold;
+}
+
+.delete {
+  font-weight: bold;
+}
+
+.enter {
+  grid-column: span 2;
+  background: linear-gradient(to right, #36d1dc, #5b86e5);
+  color: white;
+  font-weight: bold;
+}
+
+.operator {
+  background: #e3e6f0;
+  color: #333;
+}
