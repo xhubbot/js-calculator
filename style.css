@@ -54,10 +54,6 @@ body {
   background: #e0e0e0;
 }
 
-.enter {
-  grid-column: span 2;
-}
-
 .clear {
   grid-column: span 2;
 }
@@ -81,7 +77,7 @@ body {
 }
 
 .enter {
-  grid-column: span 2;
+  grid-column: span 1;
   background: linear-gradient(to right, #36d1dc, #5b86e5);
   color: white;
   font-weight: bold;
@@ -90,4 +86,14 @@ body {
 .operator {
   background: #e3e6f0;
   color: #333;
+}
+
+.operators {
+  display: grid;
+  grid-row: span 5;
+  gap: 15px;
+}
+
+.zero {
+  grid-column: span 2;
 }

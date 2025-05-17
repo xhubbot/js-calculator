@@ -48,6 +48,16 @@ inputButtons.forEach(button => {
       if (['+', '-', '*', '/', '.'].includes(lastChar) || currentInput === '') return;
     }
 
+    if (['+', '-', '*', '/'].includes(value)) {
+      if (currentInput.slice(1).match(/[+\-*/]/)) {
+        let intermediateResult = calculateExpression(currentInput);
+        currentInput = intermediateResult.toString();
+        currentInput += value;
+        display.innerText = currentInput;
+        return;
+      };
+    };
+
     currentInput += value;
     display.innerText = currentInput;
   });
@@ -81,7 +91,24 @@ function calculateExpression(input) {
   const operatorMatch = input.match(/[+\-*/]/); // Find the first operator
 
   if (!operatorMatch) {
-    return 'Error: No operator found';
+    return input.toString();
+  }
+
+  if (input[0] === '-') {
+    const operatorMatch = input.slice(1).match(/[+\-*/]/); // Find operator after the minus sign
+    if (!operatorMatch) return input.toString();
+
+    const operator = operatorMatch[0];
+    const parts = input.slice(1).split(operator); // Skip first minus
+
+    const a = -parseFloat(parts[0]); // Negate the first number
+    const b = parseFloat(parts[1]);
+
+    if (isNaN(a) || isNaN(b)) {
+      return 'Error: Invalid numbers';
+    }
+
+    return operate(operator, a, b);
   }
 
   const operator = operatorMatch[0];
@@ -91,5 +118,5 @@ function calculateExpression(input) {
     return 'Error: Invalid numbers';
   }
 
-  return operate(operator, a, b);
+  return parseFloat(operate(operator, a, b).toFixed(5));
 }
